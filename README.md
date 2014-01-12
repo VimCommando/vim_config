@@ -1,3 +1,5 @@
+vim_config
+==============
 My personal vim configurations.
 
 It is intended to be as cross-platform compatible as I can makd it, since I
