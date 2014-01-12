@@ -1,0 +1,1 @@
+/home/reno/.vim/extras/vim-json/ftdetect/json.vim
