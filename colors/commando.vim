@@ -73,10 +73,10 @@ hi Underlined cterm=underline ctermfg=Gray gui=underline guifg=#a8a8a8
 " Note: we never set 'term' because the defaults for B&W terminals are OK
 
 " Diff Highlights
-hi DiffAdd      cterm=underline ctermbg=Blue ctermfg=Green guibg=#000054 guifg=#fcfcfc
-hi DiffChange   cterm=none ctermbg=DarkBlue ctermfg=Magenta guibg=#000054 guifg=#fc00fc 
-hi DiffText     cterm=underline ctermbg=Blue ctermfg=Yellow gui=underline guibg=#0000a8 guifg=#fcfc00
-hi DiffDelete   cterm=bold ctermbg=DarkRed  ctermfg=Black guifg=#000000 guibg=#540000
+hi DiffAdd      cterm=none ctermbg=Black ctermfg=Green guibg=#005400 guifg=#00fc00
+hi DiffChange   cterm=none ctermbg=Black ctermfg=Cyan guibg=#000054 guifg=#00fcfc 
+hi DiffText     cterm=underline ctermbg=Black ctermfg=Yellow gui=underline guibg=#000054 guifg=#fcfc00
+hi DiffDelete   cterm=none ctermbg=Black ctermfg=Red guifg=#fc0000 guibg=#540000
  
 " syntax highlighting
 hi Comment    cterm=none    ctermfg=DarkRed     gui=none     guifg=#a80000
@@ -86,13 +86,13 @@ hi Identifier cterm=none    ctermfg=DarkCyan    gui=none     guifg=#00a8a8
 hi NonText    ctermfg=DarkBlue  cterm=none      guifg=#5454fc  guibg=#000000 gui=none
 hi MatchParen ctermfg=Yellow ctermbg=Blue guifg=#fcfc00 guibg=Blue 
 hi PreProc    cterm=none    ctermfg=DarkMagenta gui=none     guifg=#a800a8
-hi Special    cterm=none    ctermfg=Red    gui=none     guifg=#fc5454
-hi SpecialKey ctermfg=Red   guifg=#fc0000
+hi Special    cterm=none    ctermfg=Red    gui=none     guifg=#fc2424
+hi SpecialKey ctermfg=Red   guifg=#ff2424
 hi Statement  cterm=none    ctermfg=Blue        gui=none     guifg=#5454fc
-hi Type       cterm=none    ctermfg=DarkCyan    gui=none     guifg=#005454
+hi Type       cterm=none    ctermfg=DarkCyan    gui=none     guifg=#00a8a8
 hi Function   cterm=none    ctermfg=White       gui=none     guifg=#fcfcfc
 hi Quote      cterm=none    ctermfg=DarkGray     gui=none     guifg=#fcfcfc
-hi Title      cterm=none    ctermfg=Red     gui=none     guifg=#fc54fc
+hi Title      cterm=none    ctermfg=Red     gui=none     guifg=#ff2424
 hi Todo       cterm=underline ctermfg=White ctermbg=none gui=underline guifg=#fcfcfc guibg=#000000
 
 " UI Elements

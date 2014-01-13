@@ -1,0 +1,7 @@
+" _gvimrc
+" Maintainer:   Ryan Eno <vim_commando@icloud.com>
+" Last Change:  12 January 2014
+"
+" Just source the .gvimrc
+
+source .gvimrc

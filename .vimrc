@@ -1,8 +1,11 @@
+" .vimrc
 " Maintainer:   Ryan Eno <vim_commando@icloud.com>
-" Last Change:  30 August 2013
+" Last Change:  27 December 2013
 "
-" Basic options the way I like it and a few usefull hotkeys 
-
+" Just some basic options and a few usefull hotkeys 
+"
+" ENVIRONMENT SETTINGS
+" -------------------------------------------------------
 syntax on
 colorscheme commando
 filetype plugin indent on
@@ -15,7 +18,6 @@ set tabstop=4
 set softtabstop=4
 set expandtab
 set autoindent
-
 
 set linebreak
 set nocompatible
@@ -37,36 +39,55 @@ set showtabline=2
 set ruler
 set showcmd
 
-" xterm - enable the mouse 
-set mouse=a
-" xterm - make the yank register available from the x11 clipboard
-set clipboard=unnamedplus,autoselect,exclude:cons\\\|linux
-
+" a Ruby on Rails autocomplete tweak
 "let g:rubycomplete_rails = 1
 
-" Enable the menu
+" Enable the command-line menu
 source $VIMRUNTIME/menu.vim
 set wildmenu
 set cpo-=<
 set wcm=<C-Z>
 
-" Shortcut Key Mappings
+" Some posix specific tweaks
+if has("unix")
+    " xterm - enable the mouse 
+    set mouse=a
+    " xterm - make the yank register available from the x11 clipboard
+    set clipboard=unnamedplus,autoselect,exclude:cons\\\|linux
+endif
+
+" KEY MAPPINGS
+" -------------------------------------------------------
+" Make arrow keys follow screen lines
 map <Up>    gk
 map <Down>  gj
+" Call the command-line menu
 map <F4>    :emenu <C-Z>
 
-" Hex editing mode toggle
-nnoremap <F7> :Hexmode<CR>
-inoremap <F7> <Esc>:Hexmode<CR>
-vnoremap <F7> :<C-U>Hexmode<CR>
-
+" Utility functions
+nmap <F5>   :call QuickSave()<CR>
 nmap <F8>   i<C-X>s
 nmap <F9>   :call SpellOn()<CR>
 nmap <F10>  :call IC_On()<CR>
 nmap <F11>  :call Lg_Fold_Col()<CR>
 nmap <F12>  :call LineNr_On()<CR>
 
-" Helper Functions
+" Hex editing mode toggle
+nnoremap <F7> :Hexmode<CR>
+inoremap <F7> <Esc>:Hexmode<CR>
+vnoremap <F7> :<C-U>Hexmode<CR>
+
+" HELPER FUNCTIONS
+" -------------------------------------------------------
+" a 'quicksave' function for your current session
+" use vim -S ~\_session.vim for quick recovery on startup
+function QuickSave()
+    wall
+    mksession! ~\_session.vim
+    echo "All files and session saved!"
+endfunction
+
+" Spelling toggles
 function! SpellOn()
 	nmap <F9> :call SpellOff()<CR>
 	setlocal spell
@@ -79,6 +100,7 @@ function! SpellOff()
 	echo "Spell Check OFF"
 endfunction
 
+" Ignore case toggles
 function! IC_On()
 	nmap <F10> :call IC_Off()<CR>
 	setlocal ignorecase smartcase
@@ -91,6 +113,7 @@ function! IC_Off()
 	echo "Ignore Case OFF"
 endfunction
 
+" Fold column size (1 to 5) toggle
 function! Lg_Fold_Col()
 	nmap <F11> :call Sm_Fold_Col()<CR>
 	setlocal foldcolumn=5
@@ -103,6 +126,7 @@ function! Sm_Fold_Col()
 	echo "Fold Column Size: 1"
 endfunction
 
+" Line number toggle
 function! LineNr_On()
 	nmap <F12> :call LineNr_Off()<CR>
 	setlocal number
@@ -114,6 +138,8 @@ function! LineNr_Off()
 	setlocal nonumber
 	echo "Line Numbers OFF"
 endfunction
+
+" Hex mode toggle
 
 " ex command for toggling hex mode - define mapping if desired
 command -bar Hexmode call ToggleHex()
