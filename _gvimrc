@@ -3,5 +3,6 @@
 " Last Change:  12 January 2014
 "
 " Just source the .gvimrc
+" This files hould be copied to the root of your user directory
 
-source vimfiles\.gvimrc
+source ~\vimfiles\.gvimrc
