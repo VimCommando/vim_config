@@ -4,4 +4,4 @@
 "
 " Just source the .gvimrc
 
-source .gvimrc
+source vimfiles\.gvimrc
