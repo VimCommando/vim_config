@@ -6,21 +6,30 @@
 "
 " ENVIRONMENT SETTINGS
 " -------------------------------------------------------
-syntax on
 colorscheme commando
+syntax on
 filetype plugin indent on
 set spelllang=en_us 
 set history=64
 
+" don't hide 'concealed' characters
+set conceallevel=0
+
 " set tab behaviors
-set shiftwidth=4
-set tabstop=4
-set softtabstop=4
+set shiftwidth=2
+set tabstop=2
+set softtabstop=2
 set expandtab
 set autoindent
 
 set linebreak
 set nocompatible
+
+" setup some neovim niceties
+if has('nvim')
+  " let <Esc> exit insert mode on terminals
+  tnoremap <Esc> <C-\><C-n>
+endif
 
 " don't line-wrap long lines
 set textwidth=79
@@ -39,8 +48,27 @@ set showtabline=2
 set ruler
 set showcmd
 
+" relative line numbers that follow window focus
+set numberwidth=2
+autocmd WinEnter * :set relativenumber
+autocmd WinLeave * :set norelativenumber
+
+" some diff niceties
+set diffopt+=iwhite
+if &diff
+  set number
+  set norelativenumber
+  map . :diffget REMOTE<CR>
+  map , :diffget LOCAL<CR>
+  map n ]c
+  map p [c
+endif
+
 " a Ruby on Rails autocomplete tweak
 "let g:rubycomplete_rails = 1
+
+" use JSX highlighting for plain .js files
+let g:jsx_ext_required = 0
 
 " Enable the command-line menu
 source $VIMRUNTIME/menu.vim
@@ -49,18 +77,20 @@ set cpo-=<
 set wcm=<C-Z>
 
 " Some posix specific tweaks
-if has("unix")
+"if has("unix")
     " xterm - enable the mouse 
-    set mouse=a
+"    set mouse=a
     " xterm - make the yank register available from the x11 clipboard
-    set clipboard=unnamedplus,autoselect,exclude:cons\\\|linux
-endif
+"    set clipboard=unnamedplus,autoselect,exclude:cons\\\|linux
+"endif
 
 " KEY MAPPINGS
 " -------------------------------------------------------
 " Make arrow keys follow screen lines
 map <Up>    gk
 map <Down>  gj
+" Toggle file tree
+map <F2>    :NERDTreeToggle<CR>
 " Call the command-line menu
 map <F4>    :emenu <C-Z>
 
@@ -181,3 +211,39 @@ function ToggleHex()
   let &readonly=l:oldreadonly
   let &modifiable=l:oldmodifiable
 endfunction
+
+" Activate package manager
+execute pathogen#infect()
+call pathogen#helptags()
+
+" Setup rainbow parentheses
+"let g:rainbow_active=1
+"let g:rainbow_conf={
+"\	'guifgs': ['royalblue3', 'darkorange3', 'seagreen3', 'firebrick'],
+"\	'ctermfgs': ['white', 'cyan', 'green', 'darkgray', 'darkcyan', 'darkgreen'],
+"\	'operators': '_,_',
+"\	'parentheses': ['start=/(/ end=/)/ fold', 'start=/\[/ end=/\]/ fold', 'start=/{/ end=/}/ fold'],
+"\	'separately': {
+"\		'*': {},
+"\		'lisp': {
+"\			'guifgs': ['royalblue3', 'darkorange3', 'seagreen3', 'firebrick', 'darkorchid3'],
+"\		},
+"\		'tex': {
+"\			'parentheses': ['start=/(/ end=/)/', 'start=/\[/ end=/\]/'],
+"\		},
+"\		'vim': {
+"\			'parentheses': ['start=/(/ end=/)/', 'start=/\[/ end=/\]/', 'start=/{/ end=/}/ fold', 'start=/(/ end=/)/ containedin=vimFuncBody', 'start=/\[/ end=/\]/ containedin=vimFuncBody', 'start=/{/ end=/}/ fold containedin=vimFuncBody'],
+"\		},
+"\		'xml': {
+"\			'parentheses': ['start=/\v\<\z([-_:a-zA-Z0-9]+)(\s+[-_:a-zA-Z0-9]+(\=("[^"]*"|'."'".'[^'."'".']*'."'".'))?)*\>/ end=#</\z1># fold'],
+"\		},
+"\		'xhtml': {
+"\			'parentheses': ['start=/\v\<\z([-_:a-zA-Z0-9]+)(\s+[-_:a-zA-Z0-9]+(\=("[^"]*"|'."'".'[^'."'".']*'."'".'))?)*\>/ end=#</\z1># fold'],
+"\		},
+"\		'php': {
+"\			'parentheses': ['start=/\v\<((area|base|br|col|embed|hr|img|input|keygen|link|menuitem|meta|param|source|track|wbr)[ >])@!\z([-_:a-zA-Z0-9]+)(\s+[-_:a-zA-Z0-9]+(\=("[^"]*"|'."'".'[^'."'".']*'."'".'|[^ '."'".'"><=`]*))?)*\>/ end=#</\z1># fold', 'start=/(/ end=/)/ containedin=@htmlPreproc contains=@phpClTop', 'start=/\[/ end=/\]/ containedin=@htmlPreproc contains=@phpClTop', 'start=/{/ end=/}/ containedin=@htmlPreproc contains=@phpClTop'],
+"\		},
+"\		'html': 0,
+"\		'css': 0,
+"\	}
+"\}

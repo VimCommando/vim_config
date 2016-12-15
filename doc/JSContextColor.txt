@@ -1,0 +1,153 @@
+Highlight JavaScript according to function scope        *JSContextColor*
+
+  * .   _______*______ .  *   .   __   .   *    __  ______  .   __   * .   .
+.      / / ___// ____/___  ____  / /____  _  __/ /_/ ____/___  / /___  _____
+  _ * / /\__ \/ /   / __ \/ __ \/ __/ _ \| |/_/ __/ /   / __ \/ / __ \/ ___/
+ / /_/ /___/ / /___/ /_/ / / / / /_/  __/>  </ /_/ /___/ /_/ / / /_/ / /  * 
+ \____//____/\____/\____/_/ /_/\__/\___/_/|_|\__/\____/\____/_/\____/_/_/ .   
+      *           .              *     .               .          *       . 
+    .      *               .               .    *   David Wilhelm <dewilhelm@gmail.com>
+
+==============================================================================
+Commands
+
+                                                        *:JSContextColor*
+:JSContextColor        	     Colorize current buffer
+
+                                                        *:JSContextColorToggle*
+:JSContextColorToggle        Toggle whether the plugin is enabled
+
+                                                        *:JSContextColorUpdate*
+:JSContextColorUpdate        Update the color highlighting
+
+==============================================================================
+
+
+Customizing Colors
+
+
+To do this, copy the 'jscc_colors.vim' colorscheme file from the plugin's /colors
+ directory, to your VIMRUNTIME/colors directory (create if necessary). Make
+sure the name is still the same. Then you can make modifications to the highlight
+ groups in the file as you wish. see ':help highlight-args' or look at other 
+colorschemes for guidance. The XtermColorTable plugin is also helpful for seeing
+ the available colors and their codes.
+
+The special syntax group 'JSCC_UndeclaredGlobal' targets undeclared global
+variables, in order to distinguish them from global variables which were
+declared in the current file. If you don't want to distinguish these, just set
+this group to the same highlighting as JSCC_Level_0.
+
+If you change the colors, you need to call :JSContextColorUpdate
+
+Options
+                                                *g:js_context_colors_enabled*
+
+Whether highlighting is done automatically when .js files are loaded/changed.
+>
+        let g:js_context_colors_enabled = 0
+<
+
+Note that commands above still work even when this is set to 0. If you enable
+the `g:js_context_colors_usemaps` option below, you can trigger them more easily.
+
+                                                *g:js_context_colors_fold*
+
+Whether folding on javascript scopes (functions) is enabled. This is enabled
+by default. To disable:
+>
+        let g:js_context_colors_fold = 0
+<
+
+                                                *g:js_context_colors_foldlevel*
+
+The level where folds will be closed by default. Default is 9. To change:
+>
+        let g:js_context_colors_foldlevel = 2
+
+This will auto-fold functions 2 levels deep.
+
+
+
+                                                *g:js_context_colors_colorize_comments*
+
+Whether to colorize comments according to the scope color -- default is false.
+
+If you want this enable this behaviour, set the option to 1:
+
+>
+	let g:js_context_colors_colorize_comments = 1
+
+This will highlight comments as the comment higroup (see next section). 
+
+
+
+                                                *g:js_context_colors_usemaps*
+
+Disables maps (see below) when set to 0:
+
+>
+	let g:js_context_colors_usemaps = 0
+<
+
+                                                *g:js_context_colors_show_error_message*
+
+When the plugin fails to get a valid response from the parser script, it
+will show an error... it will also not highlight. This is most likely a syntax error,
+but it could also be a problem with the CLI script (perhaps it was not installed).
+To stop annoying users, however it is now suppressed by default.
+
+But for debugging, it can be re-enabled with this option:
+
+>
+	let g:js_context_colors_show_error_message = 1
+<
+
+                                                *g:js_context_colors_debug*
+
+If set to 1, this enables verbose debug output, eg. highlighting data is
+displayed.
+
+                                                *g:js_context_colors_block_scope*
+
+Highlight blocks as scope levels. Only really makes sense for ES6 code, but
+this will also affect ES5 code, so be aware of that. It will be ignored if
+the g:js_context_colors_es5 option is set (see below).
+
+                                                *g:js_context_colors_block_scope_with_let*
+
+Highlight blocks as scope levels, only if a 'let' variable was included in it.
+This allows smarter highlighting across ES5 and ES6, as only ES6 code will
+have let variables.
+
+                                                *g:js_context_colors_highlight_function_names*
+
+Highlight declared function names with the parent scope level color, to
+indicate that the name was exported to the container scope. Set to 1 to
+enable.
+
+                                                *g:js_context_colors_jsx*
+
+Tolerates React/JSX syntax. This is off by default, set to 1 to enable.  If the file extension
+is .jsx this will be automatically turned on.
+                                                *g:js_context_colors_es5*
+
+Only support ES5 syntax. By default the plugin will now highlight ES6 syntax as well as
+ES5/ES3. This switches to the older CLI backend.
+
+                                                *g:js_context_colors_allow_jsx_syntax*
+
+Allow JSX syntax (eg. vim-jsx) to appear over scope highlighting. This must be
+installed separately, and loaded *after* this plugin.
+>
+
+==============================================================================
+Mapping
+
+By default, <localleader>h is mapped to the JSContextColor command.
+By default, <localleader>t is mapped to the JSContextColorToggle command.
+
+These can be changed by setting your own maps to the commands. This will
+remove the above mappings.
+
+ vim:tw=78:sw=8:ts=8:sts=8:noet:ft=help:norl:

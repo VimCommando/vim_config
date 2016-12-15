@@ -79,21 +79,29 @@ hi DiffText     cterm=underline ctermbg=Black ctermfg=Yellow gui=underline guibg
 hi DiffDelete   cterm=none ctermbg=Black ctermfg=Red guifg=#fc0000 guibg=#540000
  
 " syntax highlighting
-hi Comment    cterm=none    ctermfg=DarkRed     gui=none     guifg=#a80000
-hi Constant   cterm=none    ctermfg=DarkGreen   gui=none     guifg=#00a800
-hi Error      ctermfg=White ctermbg=DarkRed guibg=#a80000 guifg=#fcfcfc
-hi Identifier cterm=none    ctermfg=DarkCyan    gui=none     guifg=#00a8a8
-hi NonText    ctermfg=DarkBlue  cterm=none      guifg=#5454fc  guibg=#000000 gui=none
-hi MatchParen ctermfg=Yellow ctermbg=Blue guifg=#fcfc00 guibg=Blue 
-hi PreProc    cterm=none    ctermfg=DarkMagenta gui=none     guifg=#a800a8
-hi Special    cterm=none    ctermfg=Red    gui=none     guifg=#fc2424
+hi Comment    cterm=none    ctermfg=DarkRed     gui=none      guifg=#a80000
+hi Constant   cterm=none    ctermfg=DarkGreen   gui=none      guifg=#00a800
+hi Error      ctermfg=White ctermbg=DarkRed     guibg=#a80000 guifg=#fcfcfc
+hi Identifier cterm=none    ctermfg=DarkCyan    gui=none      guifg=#00a8a8
+hi NonText    ctermfg=DarkBlue  cterm=none      guifg=#5454fc guibg=#000000 gui=none
+hi MatchParen cterm=bold    ctermfg=Cyan  ctermbg=DarkBlue    guifg=Cyan    guibg=#0000fc 
+hi PreProc    cterm=none    ctermfg=DarkMagenta gui=none      guifg=#a800a8
+hi Special    cterm=none    ctermfg=Red         gui=none      guifg=#fc2424
 hi SpecialKey ctermfg=Red   guifg=#ff2424
-hi Statement  cterm=none    ctermfg=Blue        gui=none     guifg=#5454fc
-hi Type       cterm=none    ctermfg=DarkCyan    gui=none     guifg=#00a8a8
-hi Function   cterm=none    ctermfg=White       gui=none     guifg=#fcfcfc
-hi Quote      cterm=none    ctermfg=DarkGray     gui=none     guifg=#fcfcfc
-hi Title      cterm=none    ctermfg=Red     gui=none     guifg=#ff2424
+hi Statement  cterm=none    ctermfg=Blue        gui=none      guifg=#5454fc
+hi Type       cterm=none    ctermfg=DarkCyan    gui=none      guifg=#00a8a8
+hi Function   cterm=none    ctermfg=White       gui=none      guifg=#fcfcfc
+hi Quote      cterm=none    ctermfg=DarkGray    gui=none      guifg=#fcfcfc
+hi Title      cterm=none    ctermfg=Red         gui=none      guifg=#ff2424
 hi Todo       cterm=underline ctermfg=White ctermbg=none gui=underline guifg=#fcfcfc guibg=#000000
+
+" line numbering
+hi LineNr       cterm=none  ctermfg=DarkGrey gui=none     guifg=#a85400
+hi CursorLineNr cterm=none  ctermfg=Grey gui=none     guifg=#a85400
+
+" dim containing characters {([])} and 'Noise'
+hi Braces     ctermfg=DarkGray
+hi Noise     ctermfg=DarkGray
 
 " UI Elements
 hi FoldColumn   ctermfg=Yellow      ctermbg=None       guibg=#000000 guifg=#fcfc00
@@ -101,7 +109,6 @@ hi Folded       ctermbg=None       ctermfg=Yellow      guibg=#000000 guifg=#fcfc
 hi Conceal      ctermfg=Yellow ctermbg=None guifg=#fcfc00 guibg=#000000
 hi IncSearch    cterm=none ctermbg=blue gui=none guibg=#0000fc
 hi Search       cterm=underline     ctermfg=Yellow      ctermbg=none   gui=underline   guifg=#fcfc00   guibg=#000000
-hi LineNr       cterm=none          ctermfg=Brown       gui=none     guifg=#a85400
 hi PMenu        ctermfg=DarkCyan    ctermbg=DarkBlue    guifg=DarkCyan  guibg=#000054
 hi PMenuSel     ctermfg=Yellow      ctermbg=Blue        guifg=#fcfc00   guibg=#0000a8
 hi PMenuSbar    ctermfg=Yellow  ctermbg=Blue guifg=#fcfc00 guibg=#0000a8
@@ -143,3 +150,10 @@ hi htmlBold cterm=bold      ctermfg=White       gui=bold    guifg=#fcfcfc
 hi htmlBoldItalic cterm=bold ctermfg=White      gui=bold,italic  guifg=#fcfcfc
 hi htmlBoldUnderline cterm=bold,underline gui=bold,underline
 hi htmlBoldUnderlineItalic cterm=bold,underline ctermfg=DarkGray gui=bold,underline,italic
+
+" xml highlighting tweaks
+hi link xmlAttrib Function
+hi link xmlTagName Identifier
+hi link xmlTag Identifier
+hi link xmlEndTag Identifier
+

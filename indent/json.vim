@@ -1,1 +1,0 @@
-/home/reno/.vim/extras/vim-json/indent/json.vim
