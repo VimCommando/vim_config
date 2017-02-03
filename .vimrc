@@ -1,8 +1,8 @@
 " .vimrc
 " Maintainer:   Ryan Eno <vim_commando@icloud.com>
-" Last Change:  27 December 2013
+" Last Change:  19 December 2016
 "
-" Just some basic options and a few usefull hotkeys 
+" Just some basic options and a few useful hotkeys 
 "
 " ENVIRONMENT SETTINGS
 " -------------------------------------------------------
@@ -26,10 +26,10 @@ set linebreak
 set nocompatible
 
 " setup some neovim niceties
-if has('nvim')
+"if has('nvim')
   " let <Esc> exit insert mode on terminals
-  tnoremap <Esc> <C-\><C-n>
-endif
+  "tnoremap <Esc> <C-\><C-n>
+"endif
 
 " don't line-wrap long lines
 set textwidth=79
@@ -82,7 +82,7 @@ set wcm=<C-Z>
 "    set mouse=a
     " xterm - make the yank register available from the x11 clipboard
 "    set clipboard=unnamedplus,autoselect,exclude:cons\\\|linux
-"endif
+"end if
 
 " KEY MAPPINGS
 " -------------------------------------------------------
@@ -113,7 +113,7 @@ vnoremap <F7> :<C-U>Hexmode<CR>
 " use vim -S ~\_session.vim for quick recovery on startup
 function QuickSave()
     wall
-    mksession! ~\_session.vim
+    mksession! session.vim
     echo "All files and session saved!"
 endfunction
 
@@ -215,35 +215,3 @@ endfunction
 " Activate package manager
 execute pathogen#infect()
 call pathogen#helptags()
-
-" Setup rainbow parentheses
-"let g:rainbow_active=1
-"let g:rainbow_conf={
-"\	'guifgs': ['royalblue3', 'darkorange3', 'seagreen3', 'firebrick'],
-"\	'ctermfgs': ['white', 'cyan', 'green', 'darkgray', 'darkcyan', 'darkgreen'],
-"\	'operators': '_,_',
-"\	'parentheses': ['start=/(/ end=/)/ fold', 'start=/\[/ end=/\]/ fold', 'start=/{/ end=/}/ fold'],
-"\	'separately': {
-"\		'*': {},
-"\		'lisp': {
-"\			'guifgs': ['royalblue3', 'darkorange3', 'seagreen3', 'firebrick', 'darkorchid3'],
-"\		},
-"\		'tex': {
-"\			'parentheses': ['start=/(/ end=/)/', 'start=/\[/ end=/\]/'],
-"\		},
-"\		'vim': {
-"\			'parentheses': ['start=/(/ end=/)/', 'start=/\[/ end=/\]/', 'start=/{/ end=/}/ fold', 'start=/(/ end=/)/ containedin=vimFuncBody', 'start=/\[/ end=/\]/ containedin=vimFuncBody', 'start=/{/ end=/}/ fold containedin=vimFuncBody'],
-"\		},
-"\		'xml': {
-"\			'parentheses': ['start=/\v\<\z([-_:a-zA-Z0-9]+)(\s+[-_:a-zA-Z0-9]+(\=("[^"]*"|'."'".'[^'."'".']*'."'".'))?)*\>/ end=#</\z1># fold'],
-"\		},
-"\		'xhtml': {
-"\			'parentheses': ['start=/\v\<\z([-_:a-zA-Z0-9]+)(\s+[-_:a-zA-Z0-9]+(\=("[^"]*"|'."'".'[^'."'".']*'."'".'))?)*\>/ end=#</\z1># fold'],
-"\		},
-"\		'php': {
-"\			'parentheses': ['start=/\v\<((area|base|br|col|embed|hr|img|input|keygen|link|menuitem|meta|param|source|track|wbr)[ >])@!\z([-_:a-zA-Z0-9]+)(\s+[-_:a-zA-Z0-9]+(\=("[^"]*"|'."'".'[^'."'".']*'."'".'|[^ '."'".'"><=`]*))?)*\>/ end=#</\z1># fold', 'start=/(/ end=/)/ containedin=@htmlPreproc contains=@phpClTop', 'start=/\[/ end=/\]/ containedin=@htmlPreproc contains=@phpClTop', 'start=/{/ end=/}/ containedin=@htmlPreproc contains=@phpClTop'],
-"\		},
-"\		'html': 0,
-"\		'css': 0,
-"\	}
-"\}
